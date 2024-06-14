@@ -32,7 +32,7 @@ except OSError as error:
     time.sleep(0.5)
     print('continue')
     print('--------')
-output_dir = '/home/s2614505/Diss/aligmnet'
+output_dir = '/home/s2614505/Diss/aligment'
 
 #finding all the reads in sra 
 def find_reads():
@@ -67,7 +67,7 @@ def find_reads():
         
         
         time.sleep(0.5)
-        map = subprocess.run("STAR --runThreadN 10 --genomeDir" + index_dir + "--readFilesIn" + fq1 + fq2 + "--outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --outFileNamePrefix" + aligned_read + '_',  shell=True)
+        map = subprocess.run("STAR --runThreadN 10 --genomeDir " + index_dir + " " "--readFilesIn " + fq1 + " " + fq2 + " " "--outSAMtype BAM SortedByCoordinate --quantMode GeneCounts " "--outFileNamePrefix " + aligned_read + "_", shell=True)
         if map.returncode !=0: 
             print('Error occured')
         else: 
