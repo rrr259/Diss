@@ -52,20 +52,17 @@ def find_reads():
             names.add(name)
         for name in sorted(names):
             print(name)
-
-        time.sleep(0.5)
-        print('Begining aligment')
-        print('-----------------')
-        get_home()
-        #defining bases 
-        for name in sorted(names):
-            fq1 = os.path.join('sra', name + '_pass_1.fastq')
-            fq2 = os.path.join('sra', name + '_pass_2.fastq')
-            aligned_read = os.path.join(output_dir, name)
             
-
-        
-        
+    time.sleep(0.5)
+    print('Begining aligment')
+    print('-----------------')
+    get_home()
+    
+    #defining bases 
+    for name in sorted(names):
+        fq1 = os.path.join('sra', name + '_pass_1.fastq')
+        fq2 = os.path.join('sra', name + '_pass_2.fastq')
+        aligned_read = os.path.join(output_dir, name)
         time.sleep(0.5)
         map = subprocess.run("STAR --runThreadN 10 --genomeDir " + index_dir + " " "--readFilesIn " + fq1 + " " + fq2 + " " "--outSAMtype BAM SortedByCoordinate --quantMode GeneCounts " "--outFileNamePrefix " + aligned_read + "_", shell=True)
         if map.returncode !=0: 
